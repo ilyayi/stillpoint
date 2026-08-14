@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint src scripts",
+    "art": "python3 scripts/generate-art.py",
+    "shots": "node scripts/shoot.mjs",
+    "a11y": "node scripts/a11y.mjs"
   },
   "dependencies": {
     "next": "16.3.1",
@@ -20,6 +23,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.1",
+    "puppeteer-core": "^25.7.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

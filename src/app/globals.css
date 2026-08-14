@@ -1,26 +1,316 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ───────────────────────────────────────────────────────────────────────────
+   DESIGN SYSTEM — "Coastal Light"
+
+   One palette, one type scale, one motion language. Change a token here and it
+   propagates everywhere. Tailwind v4 generates utilities from these names, so
+   --color-ocean gives you bg-ocean / text-ocean / border-ocean automatically.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Ocean ------------------------------------------------------------------ */
+  --color-abyss: #061e29; /* near-black teal — deepest ground */
+  --color-deep: #0d384c; /* deep ocean blue — primary dark */
+  --color-ocean: #1c5a72; /* mid ocean — links, accents on light */
+  --color-sea: #4e8fa3; /* soft sea blue */
+  --color-shoal: #89bbc2; /* shallow water */
+  --color-mist: #bad4d6; /* pale sea mist */
+  --color-foam: #e8eeeb; /* foam white */
+
+  /* Shore ------------------------------------------------------------------ */
+  --color-ivory: #f7f3ec; /* page ground */
+  --color-shell: #f1ebe0; /* alternate ground */
+  --color-sand: #e3d5c0; /* warm sand */
+  --color-dune: #cdbba1; /* deeper sand — hairlines on light */
+  --color-clay: #b0987c; /* muted earth — pigment, large type and rules only */
+  --color-clay-deep: #7b6247; /* the readable clay: 5.2:1 on ivory */
+
+  /* Sun -------------------------------------------------------------------- */
+  --color-gold: #c8a063; /* sunlit gold — borders and accents */
+  --color-gold-deep: #7f6129; /* the readable gold: 5.3:1 on ivory */
+  --color-sunlight: #e8c58b;
+
+  /* Ink — every one of these clears 4.5:1 on both ivory and shell ----------- */
+  --color-ink: #12252e; /* body text on light */
+  --color-ink-soft: #43575f; /* secondary text on light */
+  --color-ink-faint: #5c6d73; /* meta text, captions */
+
+  /* Type ------------------------------------------------------------------- */
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+
+  /* Motion — everything on the site uses one of these three curves ---------- */
+  --ease-tide: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-swell: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-drift: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout ----------------------------------------------------------------- */
+  --spacing-gutter: 1.5rem;
+
+  --animate-breathe: breathe 7s var(--ease-swell) infinite;
+  --animate-drift: drift 26s var(--ease-drift) infinite alternate;
+  --animate-sink: sink 2.4s var(--ease-tide) infinite;
+  --animate-shimmer: shimmer 9s linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.045);
+    opacity: 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes drift {
+  from {
+    transform: translate3d(-1.5%, 0, 0) scale(1.06);
+  }
+  to {
+    transform: translate3d(1.5%, -1%, 0) scale(1.1);
+  }
+}
+
+@keyframes sink {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(7px);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────── base ───────── */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Sticky header clearance for in-page anchors */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.65;
+    letter-spacing: 0.006em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-deep);
+    color: var(--color-ivory);
+  }
+
+  /* One consistent, visible focus ring across the whole site */
+  :focus-visible {
+    outline: 2px solid var(--color-ocean);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Respect the reader's system preference — every animation stops. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ───────────────────────────────────────────────────── components ───────── */
+
+@layer components {
+  /* Eyebrow / kicker: small, wide-tracked, uppercase */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* Fluid display sizes. clamp() keeps the type musical at every width. */
+  .t-hero {
+    font-size: clamp(2.85rem, 8.4vw, 7.5rem);
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+  }
+
+  .t-display {
+    font-size: clamp(2.2rem, 5.2vw, 4.25rem);
+    line-height: 1.04;
+    letter-spacing: -0.028em;
+  }
+
+  .t-title {
+    font-size: clamp(1.65rem, 3.1vw, 2.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.022em;
+  }
+
+  .t-lead {
+    font-size: clamp(1.0625rem, 1.55vw, 1.3125rem);
+    line-height: 1.62;
+    font-weight: 300;
+  }
+
+  /* A quiet hairline in the sand palette */
+  .rule {
+    border-color: color-mix(in oklab, var(--color-dune) 55%, transparent);
+  }
+
+  /* Fine film grain over immersive imagery — kills banding, adds warmth */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.22;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  /* Underline that grows from the left on hover */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.5s var(--ease-tide);
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /* Scrim for type over photography. Two stops, no muddy middle. */
+  .scrim-bottom {
+    background: linear-gradient(
+      to top,
+      color-mix(in oklab, var(--color-abyss) 92%, transparent) 0%,
+      color-mix(in oklab, var(--color-abyss) 74%, transparent) 28%,
+      color-mix(in oklab, var(--color-abyss) 42%, transparent) 55%,
+      color-mix(in oklab, var(--color-abyss) 14%, transparent) 78%,
+      transparent 100%
+    );
+  }
+
+  .scrim-full {
+    background: linear-gradient(
+      to top,
+      color-mix(in oklab, var(--color-abyss) 78%, transparent),
+      color-mix(in oklab, var(--color-abyss) 34%, transparent)
+    );
+  }
+}
+
+/* ─────────────────────────────────────────────────────── utilities ──────── */
+
+@layer utilities {
+  .u-container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    max-width: 84rem;
+  }
+
+  @media (min-width: 768px) {
+    .u-container {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .u-container {
+      padding-inline: 3.5rem;
+    }
+  }
+
+  /* Narrow measure for long-form reading */
+  .u-measure {
+    max-width: 38rem;
+  }
+
+  .u-measure-wide {
+    max-width: 46rem;
+  }
+
+  /* Scroll-reveal: set by IntersectionObserver in <Reveal /> */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 1.1s var(--ease-tide),
+      transform 1.1s var(--ease-tide);
+    /* Promoted only while it still has work to do — once revealed the element
+       drops back to the normal paint path instead of pinning a GPU layer. */
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Hide scrollbars on horizontal rails while keeping them scrollable */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
