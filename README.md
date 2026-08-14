@@ -163,11 +163,42 @@ alt text on meaningful images with decorative ones marked `alt=""`, 44px+ tap ta
 
 ## Deploying
 
-Any Node host or static-friendly platform works. On **Vercel**: push the repo, import it, done —
-no configuration needed.
+### Railway (configured and ready)
 
-Before the first deploy, set `url` in `src/content/site.ts` to your real domain so canonical
-links, the sitemap and social share cards point at the right place.
+The repo already contains everything Railway needs — `railway.json`, a pinned Node version in
+`.nvmrc`, and a start script that binds Railway's injected `$PORT` on `0.0.0.0`.
+
+1. **railway.com → New Project → Deploy from GitHub repo → `stillpoint`.**
+2. Railway detects Node, runs `npm ci` → `npm run build` → `npm run start`. No settings to change.
+3. **Settings → Networking → Generate Domain.** You get a `*.up.railway.app` URL.
+4. **Redeploy once** after generating the domain (see below).
+
+**Why the redeploy matters.** Every page is statically generated at build time, and canonical
+links, the sitemap and social share cards are baked in during that build. The build reads
+`RAILWAY_PUBLIC_DOMAIN`, which does not exist until you generate a domain — so the first build
+falls back to `site.url`. One redeploy after step 3 and every URL on the site is correct.
+
+**Custom domain.** Add it under Settings → Networking, then set a variable:
+
+```
+NEXT_PUBLIC_SITE_URL = https://your-domain.com
+```
+
+and redeploy. That variable wins over everything else. (Order: `NEXT_PUBLIC_SITE_URL` →
+`RAILWAY_PUBLIC_DOMAIN` → `site.url`. See `resolveBaseUrl()` in `src/lib/seo.ts`.)
+
+**No other environment variables are required.** The site has no database, no API keys and no
+secrets — the contact form composes an email client-side, and booking is an external link.
+
+**Cost note.** Railway bills for a container that runs continuously. This site is entirely static
+output being served by Node, so it sits at the bottom of the usage range — but it is not free
+the way a static host is. If that matters, the same repo deploys to Vercel, Netlify or Cloudflare
+Pages unchanged.
+
+### Anywhere else
+
+Any Node host works: `npm ci && npm run build && npm run start`. On **Vercel**, import the repo —
+no configuration needed, and `NEXT_PUBLIC_SITE_URL` is the only variable worth setting.
 
 ---
 

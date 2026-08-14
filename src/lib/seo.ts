@@ -4,7 +4,31 @@ import { activeServices, type Service } from "@/content/services";
 import { faqs } from "@/content/faq";
 import { images } from "@/lib/images";
 
-export const BASE_URL = site.url.replace(/\/$/, "");
+/**
+ * Where the site actually lives. Resolved at build time, in this order:
+ *
+ *   1. NEXT_PUBLIC_SITE_URL   — set this once you point a custom domain here
+ *   2. RAILWAY_PUBLIC_DOMAIN  — Railway sets this for you automatically
+ *   3. site.url               — the value in src/content/site.ts
+ *
+ * This is what canonical links, the sitemap, and social share cards use, so on
+ * Railway they point at the real deployment from the very first build instead
+ * of at a domain that does not exist yet. Changing it needs a redeploy.
+ */
+function resolveBaseUrl() {
+  const candidate =
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+    process.env.RAILWAY_PUBLIC_DOMAIN?.trim() ||
+    site.url;
+  const withProtocol = /^https?:\/\//i.test(candidate) ? candidate : `https://${candidate}`;
+  try {
+    return new URL(withProtocol).origin;
+  } catch {
+    return site.url.replace(/\/$/, "");
+  }
+}
+
+export const BASE_URL = resolveBaseUrl();
 
 const abs = (path: string) => `${BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 

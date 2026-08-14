@@ -110,7 +110,14 @@ export const site = {
     linkedin: "",
   },
 
-  /** Production URL. Used for canonical links, sitemap and Open Graph. */
+  /**
+   * Production URL — used for canonical links, the sitemap and Open Graph.
+   *
+   * On Railway you can leave this alone: the deployment picks up its own
+   * public domain automatically. Once you point a real domain at the site, set
+   * the NEXT_PUBLIC_SITE_URL variable in Railway (or change this value) and
+   * redeploy. See resolveBaseUrl() in src/lib/seo.ts for the exact order.
+   */
   url: "https://www.stillpointsb.com",
 
   /**

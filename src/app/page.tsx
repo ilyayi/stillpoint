@@ -10,7 +10,7 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { FaqPreview } from "@/components/home/FaqPreview";
 import { ClosingCta } from "@/components/shared/ClosingCta";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildMetadata } from "@/lib/seo";
+import { BASE_URL, buildMetadata } from "@/lib/seo";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -52,8 +52,8 @@ export default function HomePage() {
           "@type": "WebPage",
           name: `${site.name} — Massage & Bodywork in ${site.location.city}`,
           description: site.tagline,
-          url: site.url,
-          about: { "@id": `${site.url.replace(/\/$/, "")}/#business` },
+          url: BASE_URL,
+          about: { "@id": `${BASE_URL}/#business` },
         }}
       />
     </>

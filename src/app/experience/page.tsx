@@ -11,7 +11,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { experienceIntro, steps } from "@/content/experience";
 import { bookHref, site } from "@/content/site";
 import { blurDataURLLight, images } from "@/lib/images";
-import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
+import { BASE_URL, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "The Experience",
@@ -169,7 +169,7 @@ export default function ExperiencePage() {
               position: i + 1,
               name: s.title,
               text: s.body,
-              url: `${site.url}/experience#${s.key}`,
+              url: `${BASE_URL}/experience#${s.key}`,
             })),
           },
         ]}

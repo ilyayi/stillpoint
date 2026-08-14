@@ -8,7 +8,7 @@ import { Section, Eyebrow } from "@/components/ui/Section";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { bookHref, fullAddress, site } from "@/content/site";
 import { images } from "@/lib/images";
-import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
+import { BASE_URL, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact",
@@ -136,7 +136,7 @@ export default function ContactPage() {
             "@context": "https://schema.org",
             "@type": "ContactPage",
             name: `Contact ${site.name}`,
-            url: `${site.url}/contact`,
+            url: `${BASE_URL}/contact`,
           },
         ]}
       />
