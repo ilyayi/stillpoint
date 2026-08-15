@@ -8,12 +8,27 @@
  *  To add a service: copy a block, change the `slug`, and drop a matching image
  *  at public/images/services/<slug>.jpg (or point `image` anywhere you like).
  *
- *  ⚑ `startingPrice` is null everywhere on purpose — no invented prices.
- *     Fill in real numbers, then set `showPrices: true` in src/content/site.ts.
+ *  ⚑ PRICES ARE ESTIMATES — REVIEW BEFORE LAUNCH.
+ *     Built from a $200/hour rate, with shorter sessions priced slightly above
+ *     pro-rata and longer ones slightly below (the usual shape), then nudged by
+ *     modality. They are a starting point you asked for, not researched local
+ *     rates — check them against what Santa Barbara actually charges and against
+ *     what you want to earn per hour on the table.
+ *
+ *     Prices live on each duration, so a session is priced by length. The "from"
+ *     figure on cards and in the schema is the cheapest length, derived
+ *     automatically — there is no second number to keep in sync.
+ *
+ *     To hide all prices again, set `showPrices: false` in src/content/site.ts.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-export type Duration = { minutes: number; note?: string };
+export type Duration = {
+  minutes: number;
+  note?: string;
+  /** Price for this length, in whole currency units. Omit to hide it. */
+  price?: number;
+};
 
 export type Service = {
   slug: string;
@@ -31,7 +46,6 @@ export type Service = {
   /** Hands-on work that may appear in the session. */
   includes: string[];
   durations: Duration[];
-  startingPrice: number | null;
   image: string;
   /** Slugs shown as "you might also consider". */
   related: string[];
@@ -64,8 +78,7 @@ export const services: Service[] = [
       "Trigger point and deep tissue techniques as appropriate",
       "Assisted stretching to finish",
     ],
-    durations: [{ minutes: 60 }, { minutes: 90, note: "Most requested" }, { minutes: 120 }],
-    startingPrice: null,
+    durations: [{ minutes: 60, price: 200 }, { minutes: 90, price: 290, note: "Most requested" }, { minutes: 120, price: 375 }],
     image: "/images/services/therapeutic-massage.jpg",
     related: ["deep-tissue", "trigger-point", "customized-bodywork"],
   },
@@ -93,8 +106,7 @@ export const services: Service[] = [
       "Forearm, elbow and knuckle techniques where appropriate",
       "Breath cues to help tissue release",
     ],
-    durations: [{ minutes: 60 }, { minutes: 90, note: "Recommended" }, { minutes: 120 }],
-    startingPrice: null,
+    durations: [{ minutes: 60, price: 210 }, { minutes: 90, price: 305, note: "Recommended" }, { minutes: 120, price: 395 }],
     image: "/images/services/deep-tissue.jpg",
     related: ["trigger-point", "therapeutic-massage", "sports-recovery"],
   },
@@ -122,8 +134,7 @@ export const services: Service[] = [
       "Attention to scalp, neck, hands and feet",
       "A quiet room and an unhurried close",
     ],
-    durations: [{ minutes: 60 }, { minutes: 90, note: "Best for fully settling" }, { minutes: 120 }],
-    startingPrice: null,
+    durations: [{ minutes: 60, price: 195 }, { minutes: 90, price: 285, note: "Best for fully settling" }, { minutes: 120, price: 370 }],
     image: "/images/services/relaxation-massage.jpg",
     related: ["cranial-sacral", "therapeutic-massage", "lymphatic"],
   },
@@ -152,11 +163,10 @@ export const services: Service[] = [
       "Simple suggestions for what to do between sessions",
     ],
     durations: [
-      { minutes: 30, note: "Focused, single-area" },
-      { minutes: 60 },
-      { minutes: 90, note: "Full recovery session" },
+      { minutes: 30, price: 120, note: "Focused, single-area" },
+      { minutes: 60, price: 210 },
+      { minutes: 90, price: 300, note: "Full recovery session" },
     ],
-    startingPrice: null,
     image: "/images/services/sports-recovery.jpg",
     related: ["stretching-mobility", "deep-tissue", "trigger-point"],
   },
@@ -184,8 +194,7 @@ export const services: Service[] = [
       "Movement and stretch to consolidate the change",
       "Feedback throughout so pressure stays productive",
     ],
-    durations: [{ minutes: 30, note: "Single area" }, { minutes: 60 }, { minutes: 90 }],
-    startingPrice: null,
+    durations: [{ minutes: 30, price: 115, note: "Single area" }, { minutes: 60, price: 205 }, { minutes: 90, price: 295 }],
     image: "/images/services/trigger-point.jpg",
     related: ["deep-tissue", "therapeutic-massage", "sports-recovery"],
   },
@@ -213,8 +222,7 @@ export const services: Service[] = [
       "Joint mobility work",
       "A few things to keep doing at home",
     ],
-    durations: [{ minutes: 30 }, { minutes: 60, note: "Full session" }, { minutes: 90 }],
-    startingPrice: null,
+    durations: [{ minutes: 30, price: 110 }, { minutes: 60, price: 195, note: "Full session" }, { minutes: 90, price: 280 }],
     image: "/images/services/stretching-mobility.jpg",
     related: ["sports-recovery", "customized-bodywork", "therapeutic-massage"],
   },
@@ -242,8 +250,7 @@ export const services: Service[] = [
       "A slow, quiet, warm room",
       "Unhurried transitions throughout",
     ],
-    durations: [{ minutes: 60 }, { minutes: 90 }],
-    startingPrice: null,
+    durations: [{ minutes: 60, price: 195 }, { minutes: 90, price: 285 }],
     image: "/images/services/lymphatic.jpg",
     related: ["relaxation-massage", "cranial-sacral", "customized-bodywork"],
   },
@@ -271,8 +278,7 @@ export const services: Service[] = [
       "Long quiet phases with minimal talking",
       "A slow, protected close",
     ],
-    durations: [{ minutes: 60 }, { minutes: 90 }],
-    startingPrice: null,
+    durations: [{ minutes: 60, price: 195 }, { minutes: 90, price: 285 }],
     image: "/images/services/cranial-sacral.jpg",
     related: ["relaxation-massage", "lymphatic", "customized-bodywork"],
   },
@@ -301,11 +307,10 @@ export const services: Service[] = [
       "Notes carried forward to your next visit",
     ],
     durations: [
-      { minutes: 60 },
-      { minutes: 90, note: "Room to cover more" },
-      { minutes: 120, note: "The most complete session" },
+      { minutes: 60, price: 210 },
+      { minutes: 90, price: 300, note: "Room to cover more" },
+      { minutes: 120, price: 390, note: "The most complete session" },
     ],
-    startingPrice: null,
     image: "/images/services/customized-bodywork.jpg",
     related: ["therapeutic-massage", "stretching-mobility", "cranial-sacral"],
   },
@@ -329,3 +334,19 @@ export const serviceCategories = [
 /** Formats "60 · 90 · 120 min" for cards. */
 export const durationLabel = (durations: Duration[]) =>
   `${durations.map((d) => d.minutes).join(" · ")} min`;
+
+/**
+ * The cheapest priced length — what "from $X" refers to on cards and in the
+ * structured data. Derived, so prices only ever live in one place.
+ * Returns null if no length has a price, and the site falls back to
+ * "Pricing on request".
+ */
+export const startingPrice = (service: Service): number | null => {
+  const prices = service.durations
+    .map((d) => d.price)
+    .filter((p): p is number => typeof p === "number");
+  return prices.length ? Math.min(...prices) : null;
+};
+
+/** "$200" — no trailing zeros, since every price here is a whole number. */
+export const formatPrice = (amount: number) => `$${amount.toLocaleString("en-US")}`;

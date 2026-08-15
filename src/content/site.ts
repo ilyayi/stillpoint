@@ -121,11 +121,12 @@ export const site = {
   url: "https://www.stillpointsb.com",
 
   /**
-   * Prices are hidden until you are ready. Set `showPrices: true` and fill in
-   * `startingPrice` on each service in src/content/services.ts — every price on
-   * the site appears at once. Until then, cards read "Pricing on request".
+   * ⚑ Prices are live, and they are ESTIMATES built from a $200/hour rate —
+   * review them before launch. They live on each session length in
+   * src/content/services.ts. Set this to false to hide every price on the site
+   * at once; cards then read "Pricing on request".
    */
-  showPrices: false,
+  showPrices: true,
   currency: "USD",
 
   /** Shown in the booking policy areas and the FAQ. Edit to match your policy. */

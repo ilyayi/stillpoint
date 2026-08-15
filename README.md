@@ -43,7 +43,7 @@ fake testimonials, no invented certifications, no made-up reviews.
 | 2 | **Your name** | `src/content/site.ts` → `practitioner` |
 | 3 | **Phone, email, address** | `src/content/site.ts` → `contact`, `location` |
 | 4 | **Booking link** — the single most important setting | `src/content/site.ts` → `booking.url` |
-| 5 | **Prices** — add real numbers, then flip the switch | `src/content/services.ts` → `startingPrice`, then `site.ts` → `showPrices: true` |
+| 5 | **Prices** — live, but **estimates** from a $200/hr rate. Check them. | `src/content/services.ts` → `price` on each duration |
 | 6 | **Testimonials** — add real client quotes, or hide the section | `src/content/testimonials.ts` |
 | 7 | **Your portrait** — the highest-impact image on the site | `src/lib/images.ts` → `practitionerPortrait` |
 | 8 | **A personal paragraph in your own voice** | `src/content/about.ts` → `personalNote` |

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { fullAddress, site } from "@/content/site";
-import { activeServices, type Service } from "@/content/services";
+import { activeServices, startingPrice, type Service } from "@/content/services";
 import { faqs } from "@/content/faq";
 import { images } from "@/lib/images";
 
@@ -174,11 +174,11 @@ export function localBusinessSchema() {
           description: service.summary,
           url: abs(`/services/${service.slug}`),
         },
-        ...(site.showPrices && service.startingPrice
+        ...(site.showPrices && startingPrice(service) !== null
           ? {
               priceSpecification: {
                 "@type": "PriceSpecification",
-                price: service.startingPrice,
+                price: startingPrice(service),
                 priceCurrency: site.currency,
                 valueAddedTaxIncluded: true,
               },
@@ -231,11 +231,12 @@ export function serviceSchema(service: Service) {
     provider: { "@id": `${BASE_URL}/#business` },
     areaServed: site.location.areasServed.map((name) => ({ "@type": "City", name })),
     audience: { "@type": "Audience", audienceType: service.goodFor.join("; ") },
-    ...(site.showPrices && service.startingPrice
+    ...(site.showPrices && startingPrice(service) !== null
       ? {
           offers: {
             "@type": "Offer",
-            price: service.startingPrice,
+            // Each length is its own offer; this is the entry price.
+            price: startingPrice(service),
             priceCurrency: site.currency,
             availability: "https://schema.org/InStock",
             url: abs("/book"),

@@ -2,13 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "@/components/ui/Button";
 import { bookHref, site } from "@/content/site";
-import { durationLabel, type Service } from "@/content/services";
+import { durationLabel, formatPrice, startingPrice, type Service } from "@/content/services";
 import { blurDataURLLight } from "@/lib/images";
 
-/** Prices stay hidden until real numbers are set. See site.showPrices. */
+/** Prices stay hidden entirely while site.showPrices is false. */
 export function priceLabel(service: Service) {
-  if (site.showPrices && service.startingPrice) {
-    return `From $${service.startingPrice}`;
+  const from = startingPrice(service);
+  if (site.showPrices && from !== null) {
+    return `From ${formatPrice(from)}`;
   }
   return "Pricing on request";
 }

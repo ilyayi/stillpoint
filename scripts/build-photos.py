@@ -59,6 +59,7 @@ SRC = {
     "sunrise_shore": unsplash("photo-1507525428034-b723cf961d3e"),  # beach at sunrise, pastel
     "headland":      unsplash("photo-1444927714506-8492d94b4e3d"),  # misty coastal ridges
     "surfer":        unsplash("photo-1455729552865-3658a5d39692"),  # surfer on a teal wave
+    "sunset":        unsplash("photo-1473116763249-2faaef81ccda"),  # golden sunset over gentle surf
     # The space
     "retreat":       unsplash("photo-1560750588-73207b1ef5b8"),     # calm room, plants, water
     "room":          pexels(5240699),                               # treatment room and cart
@@ -105,7 +106,10 @@ JOBS = [
     ("soft_back",     "services/therapeutic-massage.jpg", 1600, 1200, 0.50, 1.00),
     ("forearm",       "services/deep-tissue.jpg",         1600, 1200, 0.50, 1.00),
     ("wrist",         "services/trigger-point.jpg",       1600, 1200, 0.50, 1.00),
-    ("foot",          "services/relaxation-massage.jpg",  1600, 1200, 0.50, 1.00),
+    # A sunset rather than hands: relaxation is the one session that is about a
+    # state rather than a technique, and a close crop of hands on a foot read as
+    # ambiguous next to the other cards.
+    ("sunset",        "services/relaxation-massage.jpg",  1600, 1200, 0.50, 1.00),
     ("back_hands",    "services/lymphatic.jpg",           1600, 1200, 0.50, 1.00),
     ("surfer",        "services/sports-recovery.jpg",     1600, 1200, 0.50, 1.00),
     ("stretch_seat",  "services/stretching-mobility.jpg", 1600, 1200, 0.45, 1.00),

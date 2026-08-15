@@ -10,7 +10,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { WaveRule } from "@/components/ui/Wave";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { activeServices, getService } from "@/content/services";
+import { activeServices, formatPrice, getService } from "@/content/services";
 import { bookHref, site } from "@/content/site";
 import { breadcrumbSchema, buildMetadata, serviceSchema } from "@/lib/seo";
 
@@ -112,23 +112,35 @@ export default async function ServiceDetailPage({
                   <h2 className="font-display text-2xl text-deep">Book this session</h2>
 
                   <dl className="mt-8 space-y-5 text-sm">
-                    <div className="flex items-baseline justify-between gap-4 border-b border-dune/50 pb-5">
-                      <dt className="tracking-[0.12em] text-ink-faint uppercase">Lengths</dt>
-                      <dd className="text-right text-deep">
+                    <div className="border-b border-dune/50 pb-5">
+                      <dt className="tracking-[0.12em] text-ink-faint uppercase">Sessions</dt>
+                      <dd className="mt-4 space-y-3">
                         {service.durations.map((d) => (
-                          <span key={d.minutes} className="block">
-                            {d.minutes} min
-                            {d.note && (
-                              <span className="ml-2 text-xs text-ocean italic">{d.note}</span>
+                          <div
+                            key={d.minutes}
+                            className="flex items-baseline justify-between gap-4"
+                          >
+                            <span className="text-deep">
+                              {d.minutes} min
+                              {d.note && (
+                                <span className="ml-2 text-xs text-ocean italic">{d.note}</span>
+                              )}
+                            </span>
+                            {site.showPrices && d.price !== undefined && (
+                              <span className="font-display text-lg leading-none text-deep">
+                                {formatPrice(d.price)}
+                              </span>
                             )}
-                          </span>
+                          </div>
                         ))}
                       </dd>
                     </div>
-                    <div className="flex items-baseline justify-between gap-4 border-b border-dune/50 pb-5">
-                      <dt className="tracking-[0.12em] text-ink-faint uppercase">Investment</dt>
-                      <dd className="text-deep">{priceLabel(service)}</dd>
-                    </div>
+                    {!site.showPrices && (
+                      <div className="flex items-baseline justify-between gap-4 border-b border-dune/50 pb-5">
+                        <dt className="tracking-[0.12em] text-ink-faint uppercase">Investment</dt>
+                        <dd className="text-deep">{priceLabel(service)}</dd>
+                      </div>
+                    )}
                     <div className="flex items-baseline justify-between gap-4">
                       <dt className="tracking-[0.12em] text-ink-faint uppercase">Where</dt>
                       <dd className="text-deep">
