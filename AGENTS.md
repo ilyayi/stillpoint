@@ -32,6 +32,10 @@ explains the content layer and the pre-launch checklist.
 does nothing at equal specificity. Use `max-sm:hidden` instead — media-query variants always sort
 later. See the comment in `src/components/layout/SiteHeader.tsx`.
 
+**Photography** lives in `scripts/build-photos.py` — a source list plus a shared colour grade.
+Add or swap a photo there and re-run `npm run photos`, so everything keeps one treatment.
+Sources cache in `.cache/photos`.
+
 **Before calling any UI change done:** `npm run build`, then `npm run a11y` (needs the server
 running). The a11y sweep is currently ✓ clean on every route at desktop and mobile — keep it that
 way.

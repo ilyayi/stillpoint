@@ -21,7 +21,16 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/images/:path*",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+        headers: [
+          {
+            key: "Cache-Control",
+            // Cached hard for a day, then served stale while it revalidates in
+            // the background — so images stay fast, but replacing one at the
+            // same filename actually reaches people. `immutable` would pin the
+            // old picture in browser and CDN caches for a year.
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
       },
     ];
   },

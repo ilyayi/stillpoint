@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
     "lint": "eslint src scripts",
-    "art": "python3 scripts/generate-art.py",
+    "photos": "python3 scripts/build-photos.py",
     "shots": "node scripts/shoot.mjs",
     "a11y": "node scripts/a11y.mjs"
   },

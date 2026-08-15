@@ -21,10 +21,15 @@ export function CoastalBreak() {
             sizes="100vw"
             placeholder="blur"
             blurDataURL={blurDataURL}
-            className="object-cover"
+            // Favour the darker water side of the frame — the pale sand at the
+            // left edge is where centred type loses its footing.
+            className="object-cover object-[68%_center]"
           />
         </Parallax>
-        <div className="absolute inset-0 bg-abyss/35" />
+        <div className="absolute inset-0 bg-abyss/40" />
+        {/* A soft pool of shade under the type. Without it, any photograph with a
+            pale area — sand, foam, sky — swallows the smaller line. */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_78%_at_50%_52%,rgba(6,30,41,0.68),rgba(6,30,41,0.25)_55%,transparent_78%)]" />
         <div className="grain absolute inset-0" />
       </div>
 
@@ -38,14 +43,14 @@ export function CoastalBreak() {
         </h2>
 
         <Reveal delay={900}>
-          <p className="mx-auto mt-12 max-w-md text-[0.9375rem] leading-relaxed text-ivory/70">
+          <p className="mx-auto mt-12 max-w-md text-[0.9375rem] leading-relaxed text-ivory/90 [text-shadow:0_1px_14px_rgba(6,30,41,0.75)]">
             The ocean has been keeping this rhythm a lot longer than we have. A good session simply
             borrows it for an hour.
           </p>
         </Reveal>
       </div>
 
-      <span className="eyebrow absolute bottom-8 left-1/2 -translate-x-1/2 text-ivory/40">
+      <span className="eyebrow absolute bottom-8 left-1/2 -translate-x-1/2 text-ivory/75 [text-shadow:0_1px_12px_rgba(6,30,41,0.8)]">
         Santa Barbara · California
       </span>
     </section>
