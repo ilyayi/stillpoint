@@ -90,8 +90,15 @@ scripts/                photo pipeline, screenshots, accessibility sweep
 
 ### Common edits
 
-**Change a price** → `src/content/services.ts`, set `startingPrice: 145`. When all nine are set,
-flip `showPrices: true` in `site.ts` and every price on the site appears at once.
+**Change a price** → `src/content/services.ts`. Each session length carries its own `price`, e.g.
+`{ minutes: 90, price: 290 }`. The "from £/$" figure on cards and in the schema is the cheapest
+length, derived automatically. `showPrices: false` in `site.ts` hides every price at once.
+
+**Change the multi-session discount** → `site.ts` → `packages`. Setting `enabled: false` removes
+every mention of it across the site.
+
+**Change the cancellation policy** → `site.ts` → `policies`. It appears on `/book`, `/experience`
+and in the FAQ.
 
 **Add a service** → copy any block in `services.ts`, change the `slug`, drop an image at
 `public/images/services/<slug>.jpg`. The services page, homepage grid, footer, booking list,
