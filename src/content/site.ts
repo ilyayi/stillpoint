@@ -79,8 +79,8 @@ export const site = {
    *                src/components/booking/BookingEmbed.tsx (marked with a TODO).
    *  ───────────────────────────────────────────────────────────────────────── */
   booking: {
-    /** ⚑ PLACEHOLDER — your scheduling link. */
-    url: "",
+    /** Calendly. Kept clean here — the embed adds its own display parameters. */
+    url: "https://calendly.com/enrichwithrich/new-meeting",
     mode: "internal" as "internal" | "external",
     embed: "iframe" as "iframe" | "link" | "script",
     /** Text used on primary buttons across the site. */

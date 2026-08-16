@@ -21,12 +21,31 @@ import { bookingReady, site } from "@/content/site";
  *  page is never a dead end.
  * ─────────────────────────────────────────────────────────────────────────────
  */
+/**
+ * Calendly accepts display parameters on the embed URL, so the scheduler picks
+ * up the site's own palette instead of arriving in default Calendly blue.
+ * Any other provider's URL is passed through untouched.
+ */
+function embedUrl(url: string) {
+  try {
+    const u = new URL(url);
+    if (!u.hostname.endsWith("calendly.com")) return url;
+    u.searchParams.set("hide_gdpr_banner", "1");
+    u.searchParams.set("background_color", "f7f3ec"); // --color-ivory
+    u.searchParams.set("text_color", "12252e"); // --color-ink
+    u.searchParams.set("primary_color", "1c5a72"); // --color-ocean
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
 export function BookingEmbed() {
   if (bookingReady && site.booking.embed === "iframe") {
     return (
-      <div className="overflow-hidden rounded-3xl border border-dune/50 bg-white shadow-[0_30px_80px_-50px_rgba(6,30,41,0.45)]">
+      <div className="overflow-hidden rounded-3xl border border-dune/50 bg-ivory shadow-[0_30px_80px_-50px_rgba(6,30,41,0.45)]">
         <iframe
-          src={site.booking.url}
+          src={embedUrl(site.booking.url)}
           title={`Book an appointment with ${site.name}`}
           loading="lazy"
           className="h-[820px] w-full border-0 md:h-[900px]"
