@@ -19,20 +19,18 @@ export const site = {
   /** One line. Used for the meta description fallback and the footer. */
   tagline: "Expert massage and bodywork in Santa Barbara, California.",
 
-  /** ⚑ PLACEHOLDER — the practitioner's name. Appears in the About signature,
-   *  the schema markup, and the footer. */
+  /** Appears in the About signature, the schema markup, and the footer. */
   practitioner: {
-    name: "[Your Name]",
+    name: "Richard Hynds",
     /** Shown under the name. Keep it factual — no invented credentials. */
-    title: "Massage Therapist & Bodyworker",
+    title: "Massage Therapist, Bodyworker & Instructor",
   },
 
-  /** ⚑ PLACEHOLDER — replace with your real contact details. */
   contact: {
-    email: "hello@example.com",
-    phone: "(805) 000-0000",
+    email: "hyndsrichard@gmail.com",
+    phone: "(805) 455-7990",
     /** Digits only, for tel: links. */
-    phoneHref: "+18050000000",
+    phoneHref: "+18054557990",
   },
 
   location: {
@@ -129,10 +127,24 @@ export const site = {
   showPrices: true,
   currency: "USD",
 
+  /**
+   * Save on a block of sessions. Set `enabled: false` to remove every mention
+   * of it across the site — the services page, each service page, /book and the
+   * FAQ all read from here.
+   */
+  packages: {
+    enabled: true,
+    minSessions: 3,
+    discountPercent: 20,
+    label: "Save 20% on 3+ sessions",
+    note: "Book three or more sessions at once and take 20% off the total. Most people who come in for something specific need a few visits anyway — this makes committing to the work easier than paying twice.",
+  },
+
   /** Shown in the booking policy areas and the FAQ. Edit to match your policy. */
   policies: {
+    cancellationFee: 25,
     cancellation:
-      "Please give at least 24 hours' notice to change or cancel a session. Late cancellations and missed appointments may be charged in full, out of respect for the time held for you.",
+      "Please give at least 24 hours' notice to change or cancel a session. Last-minute cancellations and no-shows are charged a $25 fee, out of respect for the time held for you.",
     arrival: "Arriving five to ten minutes early gives us time to talk before we begin.",
   },
 } as const;

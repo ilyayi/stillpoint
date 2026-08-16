@@ -240,11 +240,20 @@
     );
   }
 
+  /**
+   * Type sitting directly on a photograph. A soft shadow keeps it legible over
+   * a bright sky or pale sand without darkening the whole image — which is what
+   * lets the photography stay light and alive.
+   */
+  .on-photo {
+    text-shadow: 0 1px 20px color-mix(in oklab, var(--color-abyss) 60%, transparent);
+  }
+
   .scrim-full {
     background: linear-gradient(
       to top,
-      color-mix(in oklab, var(--color-abyss) 78%, transparent),
-      color-mix(in oklab, var(--color-abyss) 34%, transparent)
+      color-mix(in oklab, var(--color-abyss) 70%, transparent),
+      color-mix(in oklab, var(--color-abyss) 26%, transparent)
     );
   }
 }

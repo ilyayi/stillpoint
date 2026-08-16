@@ -8,6 +8,7 @@ import { ServiceCard, priceLabel } from "@/components/services/ServiceCard";
 import { Button, ArrowRight } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section, Eyebrow } from "@/components/ui/Section";
+import { PackageNote } from "@/components/shared/PackageNote";
 import { WaveRule } from "@/components/ui/Wave";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { activeServices, formatPrice, getService } from "@/content/services";
@@ -149,7 +150,9 @@ export default async function ServiceDetailPage({
                     </div>
                   </dl>
 
-                  <Button href={bookHref} size="lg" className="mt-9 w-full">
+                  <PackageNote variant="inline" className="mt-5 border-t border-dune/50 pt-5" />
+
+                  <Button href={bookHref} size="lg" className="mt-7 w-full">
                     {site.booking.label}
                     <ArrowRight />
                   </Button>

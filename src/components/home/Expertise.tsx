@@ -20,9 +20,9 @@ export function Expertise() {
           sizes="100vw"
           placeholder="blur"
           blurDataURL={blurDataURL}
-          className="object-cover opacity-25"
+          className="object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-deep via-deep/85 to-abyss" />
+        <div className="absolute inset-0 bg-gradient-to-b from-deep/95 via-deep/80 to-deep" />
         <div className="grain absolute inset-0" />
       </div>
 
@@ -42,12 +42,13 @@ export function Expertise() {
               </p>
             </Reveal>
             <Reveal delay={230}>
-              <p className="mt-6 text-ivory/60">
-                750+ hours of formal training at the Santa Barbara Body Therapy Institute, further
-                work in Genius of Flexibility and RFST, and professional experience alongside Dr.
-                Hunter Ford at Ford Chiropractic &amp; Sports Care — where massage was often the
-                work performed immediately before a chiropractic adjustment, at a volume of 50+
-                clients a week.
+              <p className="mt-6 text-ivory/70">
+                Ten years of hands-on practice. 750+ hours of formal training at the Santa Barbara
+                Body Therapy Institute, further work in Genius of Flexibility and RFST, and
+                professional experience alongside Dr. Hunter Ford at Ford Chiropractic &amp; Sports
+                Care — where massage was often the work performed immediately before a chiropractic
+                adjustment, at a volume of 50+ clients a week. These days I also teach at the
+                massage school, which keeps the fundamentals honest.
               </p>
             </Reveal>
             <Reveal delay={300}>

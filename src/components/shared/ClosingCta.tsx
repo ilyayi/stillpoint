@@ -24,10 +24,10 @@ export function ClosingCta({
             sizes="100vw"
             placeholder="blur"
             blurDataURL={blurDataURL}
-            className="object-cover opacity-70"
+            className="object-cover opacity-90"
           />
         </Parallax>
-        <div className="absolute inset-0 bg-gradient-to-b from-abyss/85 via-abyss/70 to-abyss/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-abyss/70 via-abyss/55 to-abyss/78" />
         <div className="grain absolute inset-0" />
       </div>
 

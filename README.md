@@ -40,8 +40,8 @@ fake testimonials, no invented certifications, no made-up reviews.
 | # | What | Where |
 |---|------|-------|
 | 1 | **Business name** — "Stillpoint" is a starting point, not a decision. Check availability locally. | `src/content/site.ts` → `name`, `descriptor` |
-| 2 | **Your name** | `src/content/site.ts` → `practitioner` |
-| 3 | **Phone, email, address** | `src/content/site.ts` → `contact`, `location` |
+| 2 | ~~Your name~~ — done (Richard Hynds) | `src/content/site.ts` → `practitioner` |
+| 3 | ~~Phone, email~~ — done. **Street address** still city-level only. | `src/content/site.ts` → `contact`, `location` |
 | 4 | **Booking link** — the single most important setting | `src/content/site.ts` → `booking.url` |
 | 5 | **Prices** — live, but **estimates** from a $200/hr rate. Check them. | `src/content/services.ts` → `price` on each duration |
 | 6 | **Testimonials** — add real client quotes, or hide the section | `src/content/testimonials.ts` |

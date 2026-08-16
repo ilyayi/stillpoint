@@ -59,7 +59,12 @@ export const faqs: FaqItem[] = [
   {
     group: "Booking & policies",
     q: "What is your cancellation policy?",
-    a: "Please give at least 24 hours' notice to change or cancel a session. Late cancellations and missed appointments may be charged in full, out of respect for the time held for you. Life happens — if something genuinely unavoidable comes up, tell me and we will work it out.",
+    a: "Please give at least 24 hours' notice to change or cancel a session. Last-minute cancellations and no-shows are charged a $25 fee — that time was held for you, and it is rarely possible to fill it at short notice. Life happens, though: if something genuinely unavoidable comes up, tell me and we will work it out.",
+  },
+  {
+    group: "Booking & policies",
+    q: "Do you offer a discount for booking several sessions?",
+    a: "Yes — book three or more sessions at once and take 20% off the total. Most people coming in for something specific need a few visits anyway, so this makes committing to the work cheaper than paying visit by visit. Sessions do not have to be scheduled all at once, and they do not have to be the same service.",
   },
   {
     group: "Booking & policies",
@@ -68,7 +73,7 @@ export const faqs: FaqItem[] = [
   },
   {
     group: "Booking & policies",
-    q: "Do you offer gift cards, packages or memberships?",
-    a: "Not yet — they are on the way, along with workshops and coastal wellness experiences. If you would like a session as a gift in the meantime, get in touch and it can be arranged directly.",
+    q: "Do you offer gift cards or memberships?",
+    a: "Multi-session packages are available now — three or more sessions booked together are 20% off. Gift cards and memberships are on the way, along with workshops and coastal wellness experiences. If you would like a session as a gift in the meantime, get in touch and it can be arranged directly.",
   },
 ];

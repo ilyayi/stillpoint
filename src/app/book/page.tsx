@@ -5,8 +5,9 @@ import { PageHero } from "@/components/layout/PageHero";
 import { BookingEmbed } from "@/components/booking/BookingEmbed";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section, Eyebrow } from "@/components/ui/Section";
+import { PackageNote } from "@/components/shared/PackageNote";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { activeServices, durationLabel } from "@/content/services";
+import { activeServices, durationLabel, formatPrice, startingPrice } from "@/content/services";
 import { site } from "@/content/site";
 import { images } from "@/lib/images";
 import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
@@ -31,6 +32,7 @@ export default function BookPage() {
 
       <Section className="bg-ivory" size="md">
         <BookingEmbed />
+        <PackageNote className="mt-8" />
       </Section>
 
       {/* A quick reference while they are deciding */}
@@ -70,8 +72,13 @@ export default function BookPage() {
                     <span className="font-display text-[1.35rem] text-deep transition-colors duration-500 group-hover:text-ocean">
                       {service.name}
                     </span>
-                    <span className="flex shrink-0 items-baseline gap-6 text-sm text-ink-faint">
+                    <span className="flex shrink-0 items-baseline gap-5 text-sm text-ink-soft">
                       <span>{durationLabel(service.durations)}</span>
+                      {site.showPrices && startingPrice(service) !== null && (
+                        <span className="font-display text-base text-deep">
+                          from {formatPrice(startingPrice(service)!)}
+                        </span>
+                      )}
                       <span className="text-xs tracking-[0.14em] text-ocean uppercase">
                         Details
                       </span>

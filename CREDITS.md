@@ -23,10 +23,10 @@ so they will not look identical to the originals.
 | `oil` | Unsplash | https://unsplash.com/photos/1515377905703-c4788e51af15 |
 | `retreat` | Unsplash | https://unsplash.com/photos/1560750588-73207b1ef5b8 |
 | `room` | Pexels | https://www.pexels.com/photo/5240699/ |
-| `soft_back` | Unsplash | https://unsplash.com/photos/1519824145371-296894a0daa9 |
 | `stretch_reach` | Pexels | https://www.pexels.com/photo/4056730/ |
 | `stretch_seat` | Pexels | https://www.pexels.com/photo/4056723/ |
 | `sunrise_shore` | Unsplash | https://unsplash.com/photos/1507525428034-b723cf961d3e |
+| `sunset` | Unsplash | https://unsplash.com/photos/1473116763249-2faaef81ccda |
 | `surfer` | Unsplash | https://unsplash.com/photos/1455729552865-3658a5d39692 |
 | `turquoise` | Unsplash | https://unsplash.com/photos/1540206395-68808572332f |
 | `wrist` | Unsplash | https://unsplash.com/photos/1519823551278-64ac92734fb1 |

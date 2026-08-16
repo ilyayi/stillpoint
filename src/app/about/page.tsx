@@ -17,7 +17,7 @@ import { breadcrumbSchema, buildMetadata, personSchema } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "About",
   description:
-    "750+ hours of formal massage therapy education at Santa Barbara Body Therapy Institute, additional Genius of Flexibility / RFST training, and professional experience in a chiropractic and sports-care practice working with 50+ clients a week.",
+    "Richard Hynds — ten years of hands-on bodywork in Santa Barbara. 750+ hours of formal training, Genius of Flexibility / RFST work, experience in a chiropractic sports-care practice, and teaching at the massage school. He broke his back and healed without surgery; getting people out of pain sooner is the point.",
   path: "/about",
   type: "profile",
   keywords: [
@@ -130,6 +130,32 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      {/* Why this work — the belief underneath the practice */}
+      <Section className="bg-shell" size="lg">
+        <div className="mx-auto max-w-4xl text-center">
+          <Reveal>
+            <Eyebrow className="justify-center">{about.mission.eyebrow}</Eyebrow>
+          </Reveal>
+          <Reveal delay={80}>
+            <blockquote className="mt-8">
+              <p className="t-display font-display text-deep">
+                &ldquo;{about.mission.statement}&rdquo;
+              </p>
+            </blockquote>
+          </Reveal>
+          <Reveal delay={170}>
+            <p className="t-lead mx-auto mt-9 u-measure-wide text-ink-soft">
+              {about.mission.body}
+            </p>
+          </Reveal>
+          <Reveal delay={240}>
+            <p className="mt-9 text-sm tracking-[0.14em] text-clay-deep uppercase">
+              {site.practitioner.name}
+            </p>
+          </Reveal>
+        </div>
+      </Section>
+
       {/* Training & experience */}
       <Section className="bg-deep text-ivory" size="lg">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
@@ -214,10 +240,10 @@ export default function AboutPage() {
               sizes="100vw"
               placeholder="blur"
               blurDataURL={blurDataURLLight}
-              className="object-cover opacity-30"
+              className="object-cover opacity-45"
             />
           </Parallax>
-          <div className="absolute inset-0 bg-abyss/70" />
+          <div className="absolute inset-0 bg-abyss/62" />
           <div className="grain absolute inset-0" />
         </div>
 

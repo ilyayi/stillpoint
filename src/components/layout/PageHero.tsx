@@ -42,7 +42,7 @@ export function PageHero({
         />
         <div className="scrim-full absolute inset-0" />
         {/* Guarantees the transparent header stays legible, whatever the photo does up there. */}
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-abyss/75 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-abyss/85 via-abyss/40 to-transparent" />
         <div className="grain absolute inset-0" />
       </div>
 
@@ -53,21 +53,21 @@ export function PageHero({
       >
         {eyebrow && (
           <Reveal>
-            <Eyebrow tone="light" className={centered ? "justify-center" : ""}>
+            <Eyebrow tone="light" className={`on-photo ${centered ? "justify-center" : ""}`}>
               {eyebrow}
             </Eyebrow>
           </Reveal>
         )}
         <Reveal delay={90}>
           <h1
-            className={`t-display mt-6 text-ivory ${centered ? "mx-auto max-w-4xl" : "max-w-4xl"}`}
+            className={`t-display on-photo mt-6 text-ivory ${centered ? "mx-auto max-w-4xl" : "max-w-4xl"}`}
           >
             {title}
           </h1>
         </Reveal>
         {lead && (
           <Reveal delay={180}>
-            <p className={`t-lead mt-7 text-ivory/75 u-measure-wide ${centered ? "mx-auto" : ""}`}>
+            <p className={`t-lead on-photo mt-7 text-ivory/90 u-measure-wide ${centered ? "mx-auto" : ""}`}>
               {lead}
             </p>
           </Reveal>

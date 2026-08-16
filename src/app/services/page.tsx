@@ -7,6 +7,7 @@ import { ServiceCard } from "@/components/services/ServiceCard";
 import { Button, ArrowRight } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section, SectionHeading, Eyebrow } from "@/components/ui/Section";
+import { PackageNote } from "@/components/shared/PackageNote";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { activeServices, serviceCategories } from "@/content/services";
 import { bookHref, site } from "@/content/site";
@@ -108,6 +109,9 @@ export default function ServicesPage() {
                 {site.booking.label}
                 <ArrowRight />
               </Button>
+            </Reveal>
+            <Reveal delay={280}>
+              <PackageNote variant="light" className="mt-10" />
             </Reveal>
           </div>
 

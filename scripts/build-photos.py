@@ -71,7 +71,6 @@ SRC = {
     "head":          pexels(5240700),                               # head and neck held, calm
     "foot":          pexels(5240677),                               # foot cradled in both hands
     "wrist":         unsplash("photo-1519823551278-64ac92734fb1"),  # hands on a forearm, cool light
-    "soft_back":     unsplash("photo-1519824145371-296894a0daa9"),  # hands on a back, pale, soft
     "oil":           unsplash("photo-1515377905703-c4788e51af15"),  # oil poured to the hand, dark
     # Movement
     "stretch_seat":  pexels(4056723),                               # seated stretch, window light
@@ -83,34 +82,34 @@ SRC = {
 # `exposure` < 1 darkens — used where white type sits on the image.
 JOBS = [
     # Structural / coastal
-    ("dawn_rock",     "hero/dawn-coast.jpg",          2560, 1600, 0.55, 0.88),
-    ("dawn_rock",     "hero/dawn-coast-portrait.jpg", 1400, 1900, 0.55, 0.88),
+    ("dawn_rock",     "hero/dawn-coast.jpg",          2560, 1600, 0.55, 0.94),
+    ("dawn_rock",     "hero/dawn-coast-portrait.jpg", 1400, 1900, 0.55, 0.94),
     ("aerial_sand",   "coast/aerial-sand.jpg",        1600, 2000, 0.50, 1.00),
-    ("aerial_foam",   "coast/aerial-foam.jpg",        2560, 1500, 0.50, 0.95),
-    ("turquoise",     "coast/turquoise.jpg",          2200, 1500, 0.50, 0.95),
-    ("dark_sea",      "coast/dark-sea.jpg",           2200, 1300, 0.50, 0.86),
-    ("sunrise_shore", "coast/sunrise-shore.jpg",      2200, 1350, 0.55, 0.94),
-    ("headland",      "coast/headland.jpg",           2200, 1300, 0.50, 0.95),
-    ("retreat",       "space/retreat.jpg",            2400, 1400, 0.50, 0.90),
-    ("room",          "space/room.jpg",               1600, 2000, 0.50, 0.95),
-    ("oil",           "work/oil.jpg",                 2200, 1300, 0.50, 0.90),
+    ("aerial_foam",   "coast/aerial-foam.jpg",        2560, 1500, 0.50, 1.00),
+    ("turquoise",     "coast/turquoise.jpg",          2200, 1500, 0.50, 1.00),
+    ("dark_sea",      "coast/dark-sea.jpg",           2200, 1300, 0.50, 0.94),
+    ("sunrise_shore", "coast/sunrise-shore.jpg",      2200, 1350, 0.55, 1.00),
+    ("headland",      "coast/headland.jpg",           2200, 1300, 0.50, 1.00),
+    ("retreat",       "space/retreat.jpg",            2400, 1400, 0.50, 0.98),
+    ("room",          "space/room.jpg",               1600, 2000, 0.50, 1.00),
+    ("oil",           "work/oil.jpg",                 2200, 1300, 0.50, 0.96),
 
     # Service cards (4:3).
     # Deliberately arranged so that no category row shows the same subject or
     # room twice — the services page groups these three-up, and two crops of one
     # shoot side by side instantly reads as stock.
-    #   Therapeutic: pale/cool · warm lamp · cool grey
-    #   Restorative: warm feet · bright overhead
-    #   Performance: ocean · studio
-    #   Specialized: head · dark still life
-    ("soft_back",     "services/therapeutic-massage.jpg", 1600, 1200, 0.50, 1.00),
+    #   Therapeutic: bright overhead · warm lamp · cool grey
+    #   Restorative: golden coast · warm hands
+    #   Performance: ocean · sunlit studio
+    #   Specialized: head held · dark still life
+    ("back_hands",    "services/therapeutic-massage.jpg", 1600, 1200, 0.50, 1.00),
     ("forearm",       "services/deep-tissue.jpg",         1600, 1200, 0.50, 1.00),
     ("wrist",         "services/trigger-point.jpg",       1600, 1200, 0.50, 1.00),
     # A sunset rather than hands: relaxation is the one session that is about a
     # state rather than a technique, and a close crop of hands on a foot read as
     # ambiguous next to the other cards.
     ("sunset",        "services/relaxation-massage.jpg",  1600, 1200, 0.50, 1.00),
-    ("back_hands",    "services/lymphatic.jpg",           1600, 1200, 0.50, 1.00),
+    ("foot",          "services/lymphatic.jpg",           1600, 1200, 0.50, 1.00),
     ("surfer",        "services/sports-recovery.jpg",     1600, 1200, 0.50, 1.00),
     ("stretch_seat",  "services/stretching-mobility.jpg", 1600, 1200, 0.45, 1.00),
     ("head",          "services/cranial-sacral.jpg",      1600, 1200, 0.50, 1.00),
@@ -124,7 +123,7 @@ JOBS = [
     ("sunrise_shore", "texture/renew.jpg",      1200, 1200, 0.50, 1.00),
 
     # Social card
-    ("dawn_rock",     "og/base.jpg", 1200, 630, 0.55, 0.88),
+    ("dawn_rock",     "og/base.jpg", 1200, 630, 0.55, 0.94),
 ]
 
 
@@ -146,12 +145,12 @@ def fetch(key):
 
 
 # ──────────────────────────────────────────────────────────────────── grade ──
-SHADOW = np.array([10, 46, 62], np.float32)    # deep ocean
-HIGHLIGHT = np.array([252, 244, 230], np.float32)  # warm ivory
+SHADOW = np.array([16, 58, 74], np.float32)    # deep ocean, lifted
+HIGHLIGHT = np.array([255, 246, 228], np.float32)  # warm sunlight
 
 
-def grade(img, exposure=1.0, desat=0.13, split=0.16, contrast=0.13,
-          vignette=0.16, grain_amt=0.011, seed=0):
+def grade(img, exposure=1.0, desat=0.05, split=0.10, contrast=0.10,
+          vignette=0.08, grain_amt=0.010, seed=0):
     a = np.asarray(img, np.float32)
 
     if exposure != 1.0:
@@ -174,7 +173,7 @@ def grade(img, exposure=1.0, desat=0.13, split=0.16, contrast=0.13,
     a = np.clip(x, 0, 1) * 255
 
     # 4. filmic shadow lift so blacks are never dead
-    a = a * 0.985 + 5.0
+    a = a * 0.975 + 9.0
 
     # 5. vignette
     if vignette:

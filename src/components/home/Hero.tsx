@@ -23,26 +23,26 @@ export function Hero() {
         />
         <div className="scrim-bottom absolute inset-0" />
         {/* Keeps the transparent header readable over the bright horizon band. */}
-        <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-abyss/65 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-abyss/80 via-abyss/35 to-transparent" />
         <div className="grain absolute inset-0" />
       </div>
 
       <div className="u-container relative pt-32 pb-12 md:pb-16">
         <Reveal>
-          <span className="eyebrow flex items-center gap-3 text-ivory/70">
+          <span className="eyebrow on-photo flex items-center gap-3 text-ivory/85">
             <span aria-hidden className="h-px w-8 bg-current opacity-60" />
             {site.location.city}, {site.location.regionName}
           </span>
         </Reveal>
 
         <Reveal delay={120}>
-          <h1 className="t-hero mt-8 max-w-[15ch] font-display text-ivory">
+          <h1 className="t-hero on-photo mt-8 max-w-[15ch] font-display text-ivory">
             Come back to yourself.
           </h1>
         </Reveal>
 
         <Reveal delay={230}>
-          <p className="t-lead mt-8 max-w-xl text-ivory/80">
+          <p className="t-lead on-photo mt-8 max-w-xl text-ivory/90">
             Expert massage and bodywork designed to help you slow down, reconnect with your body,
             and feel more present.
           </p>
@@ -63,15 +63,15 @@ export function Hero() {
         {/* Quiet credibility, right where the eye lands after the buttons. */}
         <Reveal delay={430}>
           <div className="mt-14 flex flex-wrap items-end justify-between gap-8 border-t border-ivory/15 pt-7">
-            <dl className="flex flex-wrap gap-x-10 gap-y-4 text-ivory/75">
+            <dl className="on-photo flex flex-wrap gap-x-10 gap-y-4 text-ivory/75">
               {[
+                { t: "10+ years", d: "Hands-on bodywork" },
                 { t: "750+ hours", d: "Formal massage training" },
-                { t: "50+ clients weekly", d: "Chiropractic & sports-care practice" },
-                { t: "20–120 min", d: "Focused to full-length sessions" },
+                { t: "Instructor", d: "Teaching at the massage school" },
               ].map((item) => (
                 <div key={item.t}>
                   <dt className="font-display text-lg text-ivory">{item.t}</dt>
-                  <dd className="mt-1 text-[0.8125rem] tracking-wide text-ivory/55">{item.d}</dd>
+                  <dd className="mt-1 text-[0.8125rem] tracking-wide text-ivory/80">{item.d}</dd>
                 </div>
               ))}
             </dl>

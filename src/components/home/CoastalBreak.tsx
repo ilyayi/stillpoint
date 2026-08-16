@@ -26,7 +26,7 @@ export function CoastalBreak() {
             className="object-cover object-[68%_center]"
           />
         </Parallax>
-        <div className="absolute inset-0 bg-abyss/40" />
+        <div className="absolute inset-0 bg-abyss/30" />
         {/* A soft pool of shade under the type. Without it, any photograph with a
             pale area — sand, foam, sky — swallows the smaller line. */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_78%_at_50%_52%,rgba(6,30,41,0.68),rgba(6,30,41,0.25)_55%,transparent_78%)]" />
